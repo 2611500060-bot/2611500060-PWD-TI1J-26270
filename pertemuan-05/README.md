@@ -1,32 +1,32 @@
-# pertemuan-05Pertemuan 05
-P5 — JavaScript Dasar, DOM, Event, dan Validasi Form
-Deskripsi
-Pada pertemuan ini, saya mulai belajar JavaScript dan mencoba menggunakannya pada halaman web yang sudah dibuat. Saya belajar bagaimana JavaScript dapat mengenali elemen HTML, merespons klik, dan membantu memeriksa isian form.
-Dari latihan ini, saya jadi lebih paham bahwa halaman web bisa berubah saat digunakan. Misalnya, menu dapat dibuka lewat tombol dan form bisa memberi tahu pengguna jika masih ada isian yang belum benar.
-Fitur dan Pengembangan
-1. JavaScript dasar
-Saya menggunakan JavaScript untuk menambahkan fungsi sederhana ke halaman. Dengan begitu, halaman dapat merespons tindakan pengguna, bukan hanya menampilkan teks dan gambar.
-2. Mengubah halaman dengan DOM
-Saya belajar memilih elemen HTML menggunakan DOM, lalu mengubah isi atau tampilannya. Perubahan tersebut bisa terlihat langsung di halaman tanpa perlu memuat ulang.
-3. Event listener
-Event listener membantu JavaScript mengetahui saat pengguna melakukan sesuatu, misalnya menekan tombol atau mengirim form. Setelah itu, JavaScript menjalankan fungsi yang sudah dibuat.
-4. Navigasi
-Saya mencoba menu navigasi yang tersedia dan memastikan setiap tautan mengarah ke bagian yang sesuai di halaman.
-5. Validasi form
-Saya menambahkan pemeriksaan pada form agar isian pengguna dapat dicek sebelum diproses. Dengan validasi ini, pengguna bisa mengetahui jika ada data yang belum lengkap atau belum sesuai.
-Pengujian
-Saya mencoba fitur-fitur halaman langsung melalui browser. Berikut langkah yang saya lakukan dan hasilnya:
-JavaScript dan perubahan DOM
-- Langkah: Membuka halaman, lalu menekan tombol yang mengubah isi atau tampilan.
-- Hasil: Halaman berubah sesuai tombol yang ditekan tanpa dimuat ulang.
-Event listener
-- Langkah: Menekan tombol yang tersedia dan mencoba mengirim form.
-- Hasil: Halaman memberikan respons terhadap tindakan tersebut.
-Navigasi
-- Langkah: Mengeklik setiap menu navigasi.
-- Hasil: Menu mengarah ke bagian halaman yang dituju.
-Validasi form
-- Langkah: Mencoba mengirim form dengan isian yang belum lengkap atau tidak sesuai, lalu mengisinya dengan data yang benar.
-- Hasil: Isian yang belum sesuai mendapatkan validasi, dan form dapat diproses setelah datanya dilengkapi.
-Riwayat Pengembangan
-Saya belum mencatat riwayat commit Git untuk proyek ini karena belum ada commit yang tersedia. Jika nanti perubahan sudah disimpan sebagai commit, saya akan menambahkan pesan commit dan ringkasannya di bagian ini.s
+# pertemuan-05/README.md`
+
+
+# P5 - JavaScript Dasar, DOM, Event, dan Validasi Sisi Klien
+
+## Deskripsi
+
+Pada pertemuan 5 ini, saya mempelajari dasar-dasar JavaScript, penggunaan DOM untuk mengubah tampilan halaman web, penggunaan event listener untuk menangani interaksi pengguna, navigasi halaman, serta validasi formulir di sisi klien.
+
+## Fitur dan Pengembangan
+
+- **JavaScript Dasar:** Menambahkan JavaScript untuk membuat halaman web menjadi lebih interaktif.
+- **Manipulasi DOM:** Menggunakan DOM untuk mengakses dan mengubah elemen HTML.
+- **Event Listener:** Menambahkan event listener untuk merespons tindakan pengguna, seperti klik tombol.
+- **Interaksi Navigasi:** Mengembangkan navigasi agar pengguna dapat berpindah antarbagian atau halaman dengan lebih mudah.
+- **Validasi Formulir:** Menambahkan validasi pada formulir untuk memastikan data yang dimasukkan sesuai sebelum dikirim.
+
+## Pengujian
+
+- **JavaScript Dasar:** Memeriksa apakah kode JavaScript berjalan sesuai dengan fungsi yang dibuat.
+- **Manipulasi DOM:** Menguji perubahan elemen HTML melalui JavaScript dan memastikan tampilannya sesuai.
+- **Event Listener:** Menguji fungsi tombol dan memastikan tindakan berjalan saat tombol diklik.
+- **Interaksi Navigasi:** Memastikan tautan navigasi mengarah ke halaman atau bagian yang benar.
+- **Validasi Formulir:** Menguji formulir dengan data kosong dan data yang sesuai untuk memastikan validasi berjalan dengan benar.
+
+## Riwayat Pengembangan
+
+Perkembangan proyek dicatat melalui commit Git dengan pesan yang menjelaskan perubahan yang dilakukan.
+
+- **`feat: menambahkan JavaScript dasar dan manipulasi DOM`**: Menambahkan fungsi JavaScript untuk membuat halaman web lebih interaktif.
+- **`feat: menambahkan event listener dan navigasi`**: Menambahkan interaksi pada tombol dan navigasi halaman.
+- **`feat: menambahkan validasi formulir sisi klien`**: Menambahkan pemeriksaan input formulir sebelum data dikirim
