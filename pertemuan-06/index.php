@@ -37,7 +37,7 @@
         dasar.
       </p>
 
-      <img src=img/"foto-profil.jpg" alt="Foto profil Defi Evraliyani" />
+      <img src="img/foto-profil.jpg" alt="Foto profil Defi Evraliyani">
     </section>
 
     <section id="about">
