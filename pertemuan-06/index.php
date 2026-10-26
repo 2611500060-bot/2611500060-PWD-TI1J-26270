@@ -1,4 +1,4 @@
-```php
+
 <?php
 // P6: PHP dasar dan pemrograman sisi peladen
 
