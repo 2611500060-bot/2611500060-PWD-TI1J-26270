@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ```php
+=======
+
+>>>>>>> a65d45f958b99cd35b0334faae5a344ec84cd7de
 <?php
 // P6: PHP dasar dan pemrograman sisi peladen
 

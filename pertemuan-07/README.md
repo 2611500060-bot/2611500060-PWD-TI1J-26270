@@ -1,3 +1,6 @@
-pada p7, saya melakukan:
-1.menyalin artefak pertemuan p6 menjadi baseline p7
-menguji fitur pada p7,hasilnya jala seperti p6.
+ 
+
+
+
+3.meremar event.preventdefault():pada scirpt.js dan mencoba superglobal $/get untuk menangkap niali yang diisikan pada formulir
+mecomba method 
