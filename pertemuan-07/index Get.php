@@ -3,7 +3,10 @@
  echo $_GET["nama"]
  echo $_GET["email"]
  echo $_GET["semester"]
- echo $_GET[]
+ echo $_GET["tanggal"]
+ echo $_GET["jenis_pesan"]
+ echo $_GET["prodi"]
+ echo $_GET["pesan"]
  // P6: PHP dasar dan pemrograman sisi peladen
 
 // Bagian 1: Variabel dan konstanta
