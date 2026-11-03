@@ -1,4 +1,24 @@
 <?php
+if (isset($_POST['kirim'])) {
+
+    $nama = htmlspecialchars($_POST['nama']);
+    $fasilitas = htmlspecialchars($_POST['fasilitas']);
+    $tanggal = htmlspecialchars($_POST['tanggal']);
+    $durasi = (int) $_POST['durasi'];
+    $keperluan = htmlspecialchars($_POST['keperluan']);
+
+    if ($nama != "" && $fasilitas != ""
+        && $tanggal != "" && $durasi > 0
+        && $keperluan != "") {
+
+        $berhasil = true;
+    } else {
+        $berhasil = false;
+    }
+}
+?>
+
+?>
 session_start();
 
 // G.2: mengambil data formulir dan session
@@ -198,6 +218,8 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
         <ul id="navMenu">
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
+            <li> <a href="#peminjaman">Peminjaman Fasilitas</a>
+</li>
             <li><a href="#contact">Kontak</a></li>
         </ul>
     </nav>
@@ -210,11 +232,11 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
 
         <p>
             Halo, saya
-            <strong><?= htmlspecialchars($namaMahasiswa, ENT_QUOTES, 'UTF-8') ?></strong>.
+            <strong><?=($namaMahasiswa, ENT_QUOTES, 'UTF-8') ?></strong>.
             Saya sedang mempelajari mata kuliah
-            <strong><?= htmlspecialchars(NAMA_MATA_KULIAH, ENT_QUOTES, 'UTF-8') ?></strong>
+            <strong><?=(NAMA_MATA_KULIAH, ENT_QUOTES, 'UTF-8') ?></strong>
             pada tahun akademik
-            <?= htmlspecialchars($tahunAkademik, ENT_QUOTES, 'UTF-8') ?>.
+            <?=($tahunAkademik, ENT_QUOTES, 'UTF-8') ?>.
         </p>
 
         <img src="foto-profil.jpg" alt="Foto profil Defi Evraliyani">
@@ -314,6 +336,37 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
             </ol>
         </article>
     </section>
+    <section id="peminjaman">
+    <h2>Permohonan Peminjaman Fasilitas Kampus</h2>
+
+    <form method="POST" action="#peminjaman">
+
+        <label>Nama Penanggung Jawab</label>
+        <input type="text" name="nama" required>
+
+        <label>Jenis Fasilitas</label>
+        <select name="fasilitas" required>
+            <option value="">Pilih Fasilitas</option>
+            <option>Ruang Kelas</option>
+            <option>Aula</option>
+            <option>Laboratorium Komputer</option>
+            <option>Proyektor</option>
+        </select>
+
+        <label>Tanggal Peminjaman</label>
+        <input type="date" name="tanggal" required>
+
+        <label>Durasi Peminjaman (jam)</label>
+        <input type="number" name="durasi" min="1" required>
+
+        <label>Keperluan Peminjaman</label>
+        <textarea name="keperluan" required></textarea>
+
+        <button type="submit" name="kirim">Kirim</button>
+        <button type="reset">Batal</button>
+
+    </form>
+</section>
 
     <section id="contact">
         <h2>Kontak</h2>
