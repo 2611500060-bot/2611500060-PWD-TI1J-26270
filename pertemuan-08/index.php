@@ -1,24 +1,4 @@
 <?php
-if (isset($_POST['kirim'])) {
-
-    $nama = htmlspecialchars($_POST['nama']);
-    $fasilitas = htmlspecialchars($_POST['fasilitas']);
-    $tanggal = htmlspecialchars($_POST['tanggal']);
-    $durasi = (int) $_POST['durasi'];
-    $keperluan = htmlspecialchars($_POST['keperluan']);
-
-    if ($nama != "" && $fasilitas != ""
-        && $tanggal != "" && $durasi > 0
-        && $keperluan != "") {
-
-        $berhasil = true;
-    } else {
-        $berhasil = false;
-    }
-}
-?>
-
-?>
 session_start();
 
 // G.2: mengambil data formulir dan session
@@ -218,8 +198,14 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
         <ul id="navMenu">
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
-            <li> <a href="#peminjaman">Peminjaman Fasilitas</a>
-</li>
+            <nav aria-label="Navigasi utama">
+    <ul id="navMenu">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#peminjaman">Peminjaman Fasilitas</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
             <li><a href="#contact">Kontak</a></li>
         </ul>
     </nav>
@@ -232,11 +218,11 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
 
         <p>
             Halo, saya
-            <strong><?=($namaMahasiswa, ENT_QUOTES, 'UTF-8') ?></strong>.
+            <strong><?= htmlspecialchars($namaMahasiswa, ENT_QUOTES, 'UTF-8') ?></strong>.
             Saya sedang mempelajari mata kuliah
-            <strong><?=(NAMA_MATA_KULIAH, ENT_QUOTES, 'UTF-8') ?></strong>
+            <strong><?= htmlspecialchars(NAMA_MATA_KULIAH, ENT_QUOTES, 'UTF-8') ?></strong>
             pada tahun akademik
-            <?=($tahunAkademik, ENT_QUOTES, 'UTF-8') ?>.
+            <?= htmlspecialchars($tahunAkademik, ENT_QUOTES, 'UTF-8') ?>.
         </p>
 
         <img src="foto-profil.jpg" alt="Foto profil Defi Evraliyani">
@@ -336,34 +322,75 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
             </ol>
         </article>
     </section>
+
     <section id="peminjaman">
     <h2>Permohonan Peminjaman Fasilitas Kampus</h2>
 
-    <form method="POST" action="#peminjaman">
+    <form id="formPeminjaman" method="POST" action="#peminjaman">
 
-        <label>Nama Penanggung Jawab</label>
-        <input type="text" name="nama" required>
+        <div class="form-group">
+            <label for="nama_penanggung_jawab">Nama Penanggung Jawab</label>
+            <input
+                type="text"
+                id="nama_penanggung_jawab"
+                name="nama_penanggung_jawab"
+                placeholder="Masukkan nama penanggung jawab"
+                required
+            >
+        </div>
 
-        <label>Jenis Fasilitas</label>
-        <select name="fasilitas" required>
-            <option value="">Pilih Fasilitas</option>
-            <option>Ruang Kelas</option>
-            <option>Aula</option>
-            <option>Laboratorium Komputer</option>
-            <option>Proyektor</option>
-        </select>
+        <div class="form-group">
+            <label for="jenis_fasilitas">Jenis Fasilitas</label>
+            <select id="jenis_fasilitas" name="jenis_fasilitas" required>
+                <option value="">-- Pilih Fasilitas --</option>
+                <option value="Ruang Kelas">Ruang Kelas</option>
+                <option value="Aula">Aula</option>
+                <option value="Laboratorium Komputer">Laboratorium Komputer</option>
+                <option value="Proyektor">Proyektor</option>
+            </select>
+        </div>
 
-        <label>Tanggal Peminjaman</label>
-        <input type="date" name="tanggal" required>
+        <div class="form-group">
+            <label for="tanggal_peminjaman">Tanggal Peminjaman</label>
+            <input
+                type="date"
+                id="tanggal_peminjaman"
+                name="tanggal_peminjaman"
+                required
+            >
+        </div>
 
-        <label>Durasi Peminjaman (jam)</label>
-        <input type="number" name="durasi" min="1" required>
+        <div class="form-group">
+            <label for="durasi_peminjaman">Durasi Peminjaman (Jam)</label>
+            <input
+                type="number"
+                id="durasi_peminjaman"
+                name="durasi_peminjaman"
+                min="1"
+                max="24"
+                placeholder="Masukkan durasi peminjaman"
+                required
+            >
+        </div>
 
-        <label>Keperluan Peminjaman</label>
-        <textarea name="keperluan" required></textarea>
+        <div class="form-group">
+            <label for="keperluan_peminjaman">Keperluan Peminjaman</label>
+            <textarea
+                id="keperluan_peminjaman"
+                name="keperluan_peminjaman"
+                rows="5"
+                placeholder="Tuliskan keperluan peminjaman fasilitas"
+                required
+            ></textarea>
+        </div>
 
-        <button type="submit" name="kirim">Kirim</button>
-        <button type="reset">Batal</button>
+        <button type="submit" name="kirim_peminjaman">
+            Kirim
+        </button>
+
+        <button type="reset">
+            Batal
+        </button>
 
     </form>
 </section>
