@@ -199,7 +199,6 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
             <li><a href="#contact">Kontak</a></li>
-            <li><a href="#peminjaman">Peminjaman Fasilitas</a>
         </ul>
     </nav>
 </header>
@@ -315,39 +314,8 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
             </ol>
         </article>
     </section>
-        <section id="peminjaman">
-    <h2>Permohonan Peminjaman Fasilitas Kampus</h2>
 
-    <form method="POST" id="formPeminjaman">
-
-        <label>Nama Penanggung Jawab</label>
-        <input type="text" name="nama" required>
-
-        <label>Jenis Fasilitas</label>
-        <select name="fasilitas" required>
-            <option value="">Pilih Fasilitas</option>
-            <option value="Ruang Kelas">Ruang Kelas</option>
-            <option value="Aula">Aula</option>
-            <option value="Laboratorium Komputer">Laboratorium Komputer</option>
-            <option value="Proyektor">Proyektor</option>
-        </select>
-
-        <label>Tanggal Peminjaman</label>
-        <input type="date" name="tanggal" required>
-
-        <label>Durasi Peminjaman (jam)</label>
-        <input type="number" name="durasi" min="1" required>
-
-        <label>Keperluan Peminjaman</label>
-        <textarea name="keperluan" required></textarea>
-
-        <button type="submit">Kirim</button>
-        <button type="reset">Batal</button>
-
-    </form>
-</section>
-
-<section id="contact">
+    <section id="contact">
         <h2>Kontak</h2>
 
         <?php if ($pesanKesalahan !== ''): ?>
