@@ -12,7 +12,70 @@ $pesan = trim((string) ($_POST['pesan'] ?? ($_SESSION['pesan'] ?? '')));
 $minat = $_POST['minat'] ?? ($_SESSION['minat'] ?? []);
 
 $pesanKesalahan = '';
+// Data formulir peminjaman fasilitas
+$namaPeminjam = '';
+$fasilitas = '';
+$tanggalPinjam = '';
+$durasiPinjam = '';
+$keperluan = '';
+$pesanPeminjaman = '';
 
+if (isset($_POST['kirim_peminjaman'])) {
+    $namaPeminjam = trim($_POST['nama_peminjam'] ?? '');
+    $fasilitas = trim($_POST['fasilitas'] ?? '');
+    $tanggalPinjam = trim($_POST['tanggal_pinjam'] ?? '');
+    $durasiPinjam = trim($_POST['durasi_pinjam'] ?? '');
+    $keperluan = trim($_POST['keperluan'] ?? '');
+
+    $errorPinjaman = [];
+
+    $daftarFasilitas = [
+        'Ruang Kelas',
+        'Aula',
+        'Laboratorium Komputer',
+        'Proyektor'
+    ];
+
+    if (strlen($namaPeminjam) < 3) {
+        $errorPinjaman[] = 'Nama minimal 3 karakter.';
+    }
+
+    if (!in_array($fasilitas, $daftarFasilitas, true)) {
+        $errorPinjaman[] = 'Pilih jenis fasilitas.';
+    }
+
+    if ($tanggalPinjam === '') {
+        $errorPinjaman[] = 'Tanggal wajib diisi.';
+    }
+
+    if (
+        filter_var($durasiPinjam, FILTER_VALIDATE_INT) === false ||
+        (int)$durasiPinjam < 1 ||
+        (int)$durasiPinjam > 24
+    ) {
+        $errorPinjaman[] = 'Durasi harus 1 sampai 24 jam.';
+    }
+
+    if ($keperluan === '') {
+        $errorPinjaman[] = 'Keperluan wajib diisi.';
+    }
+
+    if (empty($errorPinjaman)) {
+        $_SESSION['dataPeminjaman'] = [
+            'nama' => $namaPeminjam,
+            'fasilitas' => $fasilitas,
+            'tanggal' => $tanggalPinjam,
+            'durasi' => $durasiPinjam,
+            'keperluan' => $keperluan
+        ];
+    } else {
+        $_SESSION['errorPeminjaman'] = $errorPinjaman;
+    }
+
+    header('Location: index.php#peminjaman');
+    exit;
+
+    } else {
 // F.2-F.4: validasi data formulir
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -106,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: index.php');
     exit;
 }
-
+}
 // Mengambil pesan kesalahan setelah redirect
 $pesanKesalahan = $_SESSION['pesanKesalahan'] ?? '';
 
@@ -198,14 +261,7 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
         <ul id="navMenu">
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
-            <nav aria-label="Navigasi utama">
-    <ul id="navMenu">
-        <li><a href="#home">Beranda</a></li>
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#peminjaman">Peminjaman Fasilitas</a></li>
-        <li><a href="#contact">Kontak</a></li>
-    </ul>
-</nav>
+            <li><a href="#peminjaman">Peminjaman Fasilitas</a>
             <li><a href="#contact">Kontak</a></li>
         </ul>
     </nav>
@@ -325,74 +381,76 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
 
     <section id="peminjaman">
     <h2>Permohonan Peminjaman Fasilitas Kampus</h2>
+    <p>Silakan isi formulir peminjaman fasilitas kampus.</p>
 
-    <form id="formPeminjaman" method="POST" action="#peminjaman">
+    <form method="POST" action="#peminjaman" class="form-peminjaman">
 
-        <div class="form-group">
-            <label for="nama_penanggung_jawab">Nama Penanggung Jawab</label>
-            <input
-                type="text"
-                id="nama_penanggung_jawab"
-                name="nama_penanggung_jawab"
-                placeholder="Masukkan nama penanggung jawab"
-                required
-            >
-        </div>
+    <div class="form-group">
+        <label>Nama Penanggung Jawab</label>
+        <input class="input-form" type="text" name="nama_peminjam"
+        placeholder="Masukkan nama lengkap" required>
+    </div>
 
-        <div class="form-group">
-            <label for="jenis_fasilitas">Jenis Fasilitas</label>
-            <select id="jenis_fasilitas" name="jenis_fasilitas" required>
-                <option value="">-- Pilih Fasilitas --</option>
-                <option value="Ruang Kelas">Ruang Kelas</option>
-                <option value="Aula">Aula</option>
-                <option value="Laboratorium Komputer">Laboratorium Komputer</option>
-                <option value="Proyektor">Proyektor</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Jenis Fasilitas</label>
+       <select class="input-form" name="fasilitas" required>
+            <option value="">-- Pilih Fasilitas --</option>
+            <option value="Ruang Kelas">Ruang Kelas</option>
+            <option value="Aula">Aula</option>
+            <option value="Laboratorium Komputer">Laboratorium Komputer</option>
+            <option value="Proyektor">Proyektor</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label for="tanggal_peminjaman">Tanggal Peminjaman</label>
-            <input
-                type="date"
-                id="tanggal_peminjaman"
-                name="tanggal_peminjaman"
-                required
-            >
-        </div>
+    <div class="form-group">
+        <label>Tanggal Peminjaman</label>
+       <input class="input-form" type="date" name="tanggal_pinjam" required>
+    </div>
 
-        <div class="form-group">
-            <label for="durasi_peminjaman">Durasi Peminjaman (Jam)</label>
-            <input
-                type="number"
-                id="durasi_peminjaman"
-                name="durasi_peminjaman"
-                min="1"
-                max="24"
-                placeholder="Masukkan durasi peminjaman"
-                required
-            >
-        </div>
+    <div class="form-group">
+        <label>Durasi Peminjaman (jam)</label>
+        <input class="input-form" type="number" name="durasi_pinjam" min="1" required>
+    </div>
 
-        <div class="form-group">
-            <label for="keperluan_peminjaman">Keperluan Peminjaman</label>
-            <textarea
-                id="keperluan_peminjaman"
-                name="keperluan_peminjaman"
-                rows="5"
-                placeholder="Tuliskan keperluan peminjaman fasilitas"
-                required
-            ></textarea>
-        </div>
+    <div class="form-group">
+        <label>Keperluan Peminjaman</label>
+        <textarea class="input-form" name="keperluan" required></textarea>
+    </div>
 
-        <button type="submit" name="kirim_peminjaman">
-            Kirim
-        </button>
+    <div class="form-tombol">
+        <button type="submit" name="kirim_peminjaman">Kirim</button>
+        <button type="reset">Batal</button>
+    </div>
 
-        <button type="reset">
-            Batal
-        </button>
+</form>
+<?php
+// Menampilkan pesan kesalahan peminjaman
+if (isset($_SESSION['errorPeminjaman'])) {
+    echo "<h3>Terjadi Kesalahan</h3>";
 
-    </form>
+    foreach ($_SESSION['errorPeminjaman'] as $error) {
+        echo "<p>" . htmlspecialchars($error) . "</p>";
+    }
+
+    unset($_SESSION['errorPeminjaman']);
+}
+
+// Menampilkan data peminjaman yang berhasil
+if (isset($_SESSION['dataPeminjaman'])) { 
+    $data = $_SESSION['dataPeminjaman'];
+?>
+
+<h3>Data Peminjaman Berhasil Diterima Peladen</h3>
+<p>Nama: <?= htmlspecialchars($data['nama']) ?></p>
+<p>Fasilitas: <?= htmlspecialchars($data['fasilitas']) ?></p>
+<p>Tanggal: <?= htmlspecialchars($data['tanggal']) ?></p>
+<p>Durasi: <?= htmlspecialchars($data['durasi']) ?> jam</p>
+<p>Keperluan: <?= htmlspecialchars($data['keperluan']) ?></p>
+
+<?php
+    unset($_SESSION['dataPeminjaman']);
+}
+?>
 </section>
 
     <section id="contact">

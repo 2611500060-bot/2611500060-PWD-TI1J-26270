@@ -89,7 +89,8 @@ section {
 
 #home h2,
 #about h2,
-#contact h2 {
+#contact h2,
+#peminjaman h2 {
     padding-bottom: 6px;
     margin-top: 0;
     margin-bottom: 16px;
@@ -250,4 +251,164 @@ footer p {
     #contact {
         grid-column: 1 / -1;
     }
+    #peminjaman {
+    grid-column: 1 / -1;
+}
+}
+/* Bagian Peminjaman Fasilitas */
+#peminjaman {
+    padding: 20px;
+    margin: 0;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+}
+
+#peminjaman h2 {
+    padding-bottom: 6px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+}
+
+#peminjaman p {
+    margin: 0 0 16px;
+    line-height: 1.6;
+}
+
+#peminjaman .form-peminjaman {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+}
+
+#peminjaman .form-group {
+    margin: 12px 0;
+}
+
+#peminjaman label {
+    display: block;
+    margin-bottom: 6px;
+    color: #1f2937;
+    font-weight: bold;
+}
+
+#peminjaman .input-form {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    color: #111827;
+    background-color: #ffffff;
+    border: 1px solid #94a3b8;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#peminjaman textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+#peminjaman .form-tombol button {
+    padding: 8px 14px;
+    margin: 8px 6px 0 0;
+    color: #ffffff;
+    background-color: #003366;
+    border: 1px solid #003366;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#peminjaman .form-tombol button:hover {
+    background-color: #1f4e78;
+}
+/* Menyamakan tampilan form peminjaman dengan form kontak */
+#peminjaman {
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 0;
+}
+
+#peminjaman label {
+    color: #1f2937;
+    font-weight: bold;
+}
+
+#peminjaman .form-peminjaman {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+#peminjaman .form-group {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+#peminjaman .input-form,
+#peminjaman textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    color: #111827;
+    background-color: #ffffff;
+    border: 1px solid #94a3b8;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#peminjaman textarea {
+    min-height: 80px;
+}
+
+#peminjaman button {
+    padding: 8px 14px;
+    margin: 8px 6px 0 0;
+    color: #ffffff;
+    background-color: #003366;
+    border: 1px solid #003366;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Membuat bagian peminjaman selebar halaman */
+main {
+    grid-template-columns: 1fr;
+}
+
+#peminjaman {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+}
+
+#peminjaman form {
+    width: 100%;
+}
+
+#peminjaman .form-group {
+    width: 100%;
+}
+
+#peminjaman input,
+#peminjaman select,
+#peminjaman textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
