@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+$contohArray = ["defi","dafa"];
+echo $contohArray[0];
+
 
 // G.2: mengambil data formulir dan session
 $nama = trim((string) ($_POST['nama'] ?? ($_SESSION['nama'] ?? '')));
@@ -13,6 +16,9 @@ $pesan = trim((string) ($_POST['pesan'] ?? ($_SESSION['pesan'] ?? '')));
 $minat = $_POST['minat'] ?? ($_SESSION['minat'] ?? []);
 
 $pesanKesalahan = '';
+ if (!is_array($minat)) {
+    $minat = [];
+ }
 
 // F.2-F.4: validasi data formulir
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
