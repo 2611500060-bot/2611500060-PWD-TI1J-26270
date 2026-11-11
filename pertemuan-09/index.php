@@ -1,11 +1,23 @@
 <?php
 session_start();
 
-$contohArray = ["defi","dafa"];
+include("fungsi.php");
+
+echo "hai <b>sayang</b> kamu";
+
+echo bersihkan("hai <b>sayang</b> kamu");
+
+echo "<script>alert('hai');</script>";
+echo bersihkan("<script>alert('hai');<script>");
+echo "<style>* {
+     font-weight: ;
+     color: hitam;
+}</style>";     
+$contohArray = ["email"];
 echo $contohArray[0];
 
 
-// G.2: mengambil data formulir dan session
+/* // G.2: mengambil data formulir dan session
 $nama = trim((string) ($_POST['nama'] ?? ($_SESSION['nama'] ?? '')));
 $email = trim((string) ($_POST['email'] ?? ($_SESSION['email'] ?? '')));
 $semesterForm = trim((string) ($_POST['semester'] ?? ($_SESSION['semester'] ?? '')));
@@ -13,9 +25,21 @@ $tanggal = trim((string) ($_POST['tanggal'] ?? ($_SESSION['tanggal'] ?? '')));
 $jenisPesan = trim((string) ($_POST['jenis_pesan'] ?? ($_SESSION['jenis_pesan'] ?? '')));
 $prodi = trim((string) ($_POST['prodi'] ?? ($_SESSION['prodi'] ?? '')));
 $pesan = trim((string) ($_POST['pesan'] ?? ($_SESSION['pesan'] ?? '')));
-$minat = $_POST['minat'] ?? ($_SESSION['minat'] ?? []);
+$minat = $_POST['minat'] ?? ($_SESSION['minat'] ?? []); */
 
+// G.2: mengambil data formulir dan session
+$dataFormulir = $_SESSION['data_formulir'] ?? [];
+
+$nama = trim((string) ($_POST['nama'] ?? ($dataFormulir['nama'] ?? '')));
+$email = trim((string) ($_POST['email'] ?? ($dataFormulir['email'] ?? '')));
+$semesterForm = trim((string) ($_POST['semester'] ?? ($dataFormulir['semester'] ?? '')));
+$tanggal = trim((string) ($_POST['tanggal'] ?? ($dataFormulir['tanggal'] ?? '')));
+$jenisPesan = trim((string) ($_POST['jenis_pesan'] ?? ($dataFormulir['jenis_pesan'] ?? '')));
+$prodi = trim((string) ($_POST['prodi'] ?? ($dataFormulir['prodi'] ?? '')));
+$pesan = trim((string) ($_POST['pesan'] ?? ($dataFormulir['pesan'] ?? '')));
+$minat = $_POST['minat'] ?? ($dataFormulir['minat'] ?? []);
 $pesanKesalahan = '';
+
  if (!is_array($minat)) {
     $minat = [];
  }
@@ -98,8 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // G.2: menyimpan data ke session
-    $_SESSION['pesanKesalahan'] = $pesanKesalahan;
-
+    /* $_SESSION['pesanKesalahan'] = $pesanKesalahan;
+   //pertemuan -07
     $_SESSION['nama'] = $nama;
     $_SESSION['email'] = $email;
     $_SESSION['semester'] = $semesterForm;
@@ -107,7 +131,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['jenis_pesan'] = $jenisPesan;
     $_SESSION['prodi'] = $prodi;
     $_SESSION['minat'] = $minat;
-    $_SESSION['pesan'] = $pesan;
+    $_SESSION['pesan'] = $pesan; */
+
+    // session p9
+    $_SESSION['data_formulir'] = [
+    'nama' => $nama,
+    'email' => $email,
+    'semester' => $semesterForm,
+    'tanggal' => $tanggal,
+    'jenis_pesan' => $jenisPesan,
+    'prodi' => $prodi,
+    'minat' => $minat,
+    'pesan' => $pesan
+];
 
     // Redirect dari POST ke GET
     header('Location: index.php');
@@ -487,61 +523,65 @@ $teksStatus = $statusAktif ? "Aktif" : "Tidak aktif";
 
         </form>
 
-        <?php if (!empty($nama)): ?>
+       <?php
 
-            <h3>Data yang Diterima Peladen</h3>
+$data = $_SESSION['data_formulir'] ?? [];
 
-            <p>
-                Nama:
-                <?= htmlspecialchars($nama, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+if (!empty($data['nama'])):?>
 
-            <p>
-                Email:
-                <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+<h3>Data yang Diterima Peladen</h3>
 
-            <p>
-                Semester:
-                <?= htmlspecialchars($semesterForm, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+<p>
+    Nama:
+    <?= htmlspecialchars($data['nama'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <p>
-                Tanggal kunjungan:
-                <?= htmlspecialchars($tanggal, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+<p>
+    Email:
+    <?= htmlspecialchars($data['email'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <p>
-                Jenis pesan:
-                <?= htmlspecialchars($jenisPesan, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+<p>
+    Semester:
+    <?= htmlspecialchars($data['semester'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <p>
-                Program studi:
-                <?= htmlspecialchars($prodi, ENT_QUOTES, 'UTF-8') ?>
-            </p>
+<p>
+    Tanggal kunjungan:
+    <?= htmlspecialchars($data['tanggal'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <p>Minat:</p>
+<p>
+    Jenis pesan:
+    <?= htmlspecialchars($data['jenis_pesan'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <?php if (is_array($minat) && count($minat) > 0): ?>
-                <ul>
-                    <?php foreach ($minat as $topik): ?>
-                        <li>
-                            <?= htmlspecialchars((string) $topik, ENT_QUOTES, 'UTF-8') ?>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p>Tidak ada minat yang dipilih.</p>
-            <?php endif; ?>
+<p>
+    Program studi:
+    <?= htmlspecialchars($data['prodi'], ENT_QUOTES, 'UTF-8') ?>
+</p>
 
-            <p>Pesan:</p>
+<p>Minat:</p>
 
-            <p>
-                <?= nl2br(htmlspecialchars($pesan, ENT_QUOTES, 'UTF-8')) ?>
-            </p>
+<?php if (!empty($data['minat']) && is_array($data['minat'])): ?>
+    <ul>
+        <?php foreach ($data['minat'] as $topik): ?>
+            <li>
+                <?= tebal(htmlspecialchars((string) $topik, ENT_QUOTES, 'UTF-8')) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>Tidak ada minat yang dipilih.</p>
+<?php endif; ?>
 
-        <?php endif; ?>
+<p>Pesan:</p>
+
+<p>
+    <?= (htmlspecialchars($data['pesan'], ENT_QUOTES, 'UTF-8')) ?>
+</p>
+
+<?php endif; ?>
 
     </section>
 
