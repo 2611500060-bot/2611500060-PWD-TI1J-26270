@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // G.2: mengambil data formulir dan session
 $nama = trim((string) ($_POST['nama'] ?? ($_SESSION['nama'] ?? '')));
 $email = trim((string) ($_POST['email'] ?? ($_SESSION['email'] ?? '')));

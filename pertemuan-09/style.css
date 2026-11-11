@@ -251,3 +251,37 @@ footer p {
         grid-column: 1 / -1;
     }
 }
+/* Mengatur Beranda dan Tentang Saya agar sejajar */
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+    padding: 20px;
+}
+
+/* Bagian Beranda */
+#home {
+    width: 100%;
+}
+
+/* Foto Profil */
+#home img {
+    display: block;
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Bagian Tentang Saya */
+#about {
+    width: 100%;
+}
+
+/* Tampilan HP */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+}
