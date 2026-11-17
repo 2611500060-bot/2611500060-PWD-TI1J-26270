@@ -1,5 +1,4 @@
 # PERTEMUAN-09
-#pertemuan-09#
 
 pada pertemuan-09,saya lakukan adalah:
 1) menyalin artefak p7 ke p9,yang selanjutnya digunakan basline p9
