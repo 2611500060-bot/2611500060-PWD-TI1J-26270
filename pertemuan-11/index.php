@@ -12,6 +12,11 @@ $hasil = mysqli_query($koneksi, $sql);
 if (!$hasil) {
     die("Kueri SELECT gagal dijalankan.");
 }
+// F.5: Mengambil hasil kueri sebagai larik asosiatif
+$dataKontak = [];
+while ($baris = mysqli_fetch_assoc($hasil)) {
+    $dataKontak[] = $baris;
+}
 
 // Mengambil data formulir dari session.
 $formData = $_SESSION['formData'] ?? [];
