@@ -103,3 +103,15 @@ function validasiFormulir(array $data): string
 
   return $pesanKesalahan;
 }
+/** Mengambil semua data kontak dari database. */
+function ambilSemuaKontak($koneksi): array
+{
+    $query = "SELECT * FROM tbl_kontak_2611500060 ORDER BY id DESC";
+    $hasil = mysqli_query($koneksi, $query);
+
+    $data = [];
+    while ($row = mysqli_fetch_assoc($hasil)) {
+        $data[] = $row;
+    }
+    return $data;
+}

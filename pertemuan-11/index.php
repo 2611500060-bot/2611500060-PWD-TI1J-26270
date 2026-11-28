@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once __DIR__ . '/fungsi.php';
+require_once __DIR__ . '/koneksi.php';
+
 
 // Mengambil data formulir dari session.
 $formData = $_SESSION['formData'] ?? [];
@@ -511,6 +513,32 @@ $dataProfil = [
                 </article>
             <?php endif; ?>
         </section>
+        <section id="daftar-kontak">
+    <h2>Daftar Kontak dari Database (P11)</h2>
+    <?php $daftarKontak = ambilSemuaKontak($koneksi); ?>
+    <?php if (!empty($daftarKontak)): ?>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Topik</th>
+                <th>Pesan</th>
+            </tr>
+            <?php foreach ($daftarKontak as $kontak): ?>
+            <tr>
+                <td><?= bersihkan($kontak['id']) ?></td>
+                <td><?= bersihkan($kontak['nama']) ?></td>
+                <td><?= bersihkan($kontak['email']) ?></td>
+                <td><?= bersihkan($kontak['topik'] ?? $kontak['jenis_pesan'] ?? '') ?></td>
+                <td><?= bersihkan($kontak['pesan']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        <p>Belum ada data kontak.</p>
+    <?php endif; ?>
+</section>
     </main>
 
     <footer>
