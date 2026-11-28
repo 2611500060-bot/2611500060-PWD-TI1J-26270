@@ -18,6 +18,7 @@ while ($baris = mysqli_fetch_assoc($hasil)) {
     $dataKontak[] = $baris;
 }
 
+
 // Mengambil data formulir dari session.
 $formData = $_SESSION['formData'] ?? [];
 
@@ -528,9 +529,8 @@ $dataProfil = [
             <?php endif; ?>
         </section>
         <section id="daftar-kontak">
-    <h2>Daftar Kontak dari Database (P11)</h2>
-    <?php $daftarKontak = ambilSemuaKontak($koneksi); ?>
-    <?php if (!empty($daftarKontak)): ?>
+    <h2><Data></Data> Kontak dari Database (P11)</h2>
+    <?php if (!empty($dataKontak)): ?>
         <table border="1" cellpadding="8" cellspacing="0">
             <tr>
                 <th>ID</th>
@@ -539,7 +539,7 @@ $dataProfil = [
                 <th>Topik</th>
                 <th>Pesan</th>
             </tr>
-            <?php foreach ($daftarKontak as $kontak): ?>
+            <?php foreach ($dataKontak as $kontak): ?>
             <tr>
                 <td><?= bersihkan($kontak['id']) ?></td>
                 <td><?= bersihkan($kontak['nama']) ?></td>
