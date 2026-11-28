@@ -6,6 +6,9 @@ $username = "root";
 $password = "";
 $database = "db_pwd_2611500060";
 
+// D.3 Menonaktifkan laporan error bawaan
+mysqli_report(MYSQLI_REPORT_OFF);
+
 // Membuat koneksi menggunakan MySQLi
 $koneksi = mysqli_connect($host, $username, $password, $database);
 
@@ -13,6 +16,4 @@ $koneksi = mysqli_connect($host, $username, $password, $database);
 if (!$koneksi) {
     die("Koneksi database gagal: " . mysqli_connect_error());
 }
-
-echo "Koneksi database berhasil!";
 ?>
