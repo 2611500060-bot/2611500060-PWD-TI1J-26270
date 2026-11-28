@@ -1,5 +1,5 @@
 <?php
-session_start();
+#session_start();
 require_once __DIR__ . '/fungsi.php';
 require_once __DIR__ . '/koneksi.php';
 
