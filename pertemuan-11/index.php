@@ -8,6 +8,10 @@ $sql = "SELECT * FROM tbl_kontak_2611500060";
 
 // F.3: Menjalankan kueri
 $hasil = mysqli_query($koneksi, $sql);
+// F.4: Memeriksa keberhasilan kueri SELECT
+if (!$hasil) {
+    die("Kueri SELECT gagal dijalankan.");
+}
 
 // Mengambil data formulir dari session.
 $formData = $_SESSION['formData'] ?? [];
